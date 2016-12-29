@@ -30,4 +30,7 @@ $ActionSendStreamDriverPermittedPeer <%= node['rsyslog']['tls_permitted_peer'] %
 <%     else -%>
 <%=      server['logs'] ? server['logs'] : node['rsyslog']['logs_to_forward'] %><%= node['rsyslog']['protocol'] == "tcp" ? " @@" : " @" %><%= server['server']  %>:<%= server['port'] ? server['port'] : node['rsyslog']['port'] %><%= server['remote_template'] ? ';' + server['remote_template'] : nil %>
 <%   end -%>
+<%   if server["final"] -%>
+& stop
+<%   end -%>
 <% end -%>
